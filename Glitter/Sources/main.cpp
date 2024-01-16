@@ -39,6 +39,32 @@ int main(int argc, char * argv[]) {
 	// **************************************
 	// Setup Vertex arrays here
 	// **************************************
+    float vertices[] =
+    {
+        -0.5f, -0.5f, 0.0f,
+        0.5f,  -0.5f, 0.0f,
+        0.0f,   0.5f, 0.0f
+
+    };
+
+    //Generate and Bind VBO
+    unsigned int VBO;
+    glGenBuffers(1, &VBO);
+    glBindBuffer(GL_ARRAY_BUFFER, VBO);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+    //Generate and bind VAO
+    unsigned int VAO;
+    glGenVertexArrays(1, &VAO);
+    glBindVertexArray(VAO);
+
+    //Specify vertex attribute pointers
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, (3 * sizeof(float)), (void*)0);
+    glEnableVertexAttribArray(0);
+
+    //unbind VAO and VBO
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindVertexArray(0);
 
 	// **************************************
 	
@@ -53,6 +79,15 @@ int main(int argc, char * argv[]) {
 
 		// **********************************
 		// Add rendering code here
+        // Bind the VAO
+        glBindVertexArray(VAO);
+
+        // Draw the triangle
+        glDrawArrays(GL_TRIANGLES, 0, 3);
+
+        // Unbind the VAO
+        glBindVertexArray(0);
+
 
 		// **********************************
 
