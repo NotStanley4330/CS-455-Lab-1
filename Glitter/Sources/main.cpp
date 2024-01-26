@@ -54,6 +54,9 @@ int main(int argc, char * argv[]) {
          0.0f, 0.9f, 0.0f
     };
 
+    //load in shaders
+    GLuint houseShaders = LoadProgram("C:\\Users\\starw\\source\\repos\\NotStanley4330\\CS-455-Lab-1\\Glitter\\Shaders\\basic.vert", "C:\\Users\\starw\\source\\repos\\NotStanley4330\\CS-455-Lab-1\\Glitter\\Shaders\\basic.frag");
+
     //Generate and Bind VBO
     unsigned int VBO;
     glGenBuffers(1, &VBO);
@@ -86,8 +89,15 @@ int main(int argc, char * argv[]) {
 
 		// **********************************
 		// Add rendering code here
+        
+
+        // Use the shader program
+        glUseProgram(houseShaders);
+
         // Bind the VAO
         glBindVertexArray(VAO);
+
+        glUniform3f(glGetUniformLocation(houseShaders, "ColorOutValue"), 0.7f, 0.5f, 0.4f);
 
         // Draw the triangle
         glDrawArrays(GL_TRIANGLES, 0, 9);
