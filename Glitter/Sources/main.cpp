@@ -39,12 +39,19 @@ int main(int argc, char * argv[]) {
 	// **************************************
 	// Setup Vertex arrays here
 	// **************************************
-    float vertices[] =
-    {
-        -0.5f, -0.5f, 0.0f,
-        0.5f,  -0.5f, 0.0f,
-        0.0f,   0.5f, 0.0f
-
+    float vertices[] = {
+        // first triangle
+         0.5f,  0.5f, 0.0f,  // top right
+         0.5f, -0.5f, 0.0f,  // bottom right
+        -0.5f,  0.5f, 0.0f,  // top left 
+        // second triangle
+         0.5f, -0.5f, 0.0f,  // bottom right
+        -0.5f, -0.5f, 0.0f,  // bottom left
+        -0.5f,  0.5f, 0.0f,   // top left
+        //top triangle
+         0.7f, 0.5f, 0.0f,
+        -0.7f, 0.5f, 0.0f,
+         0.0f, 0.9f, 0.0f
     };
 
     //Generate and Bind VBO
@@ -83,7 +90,7 @@ int main(int argc, char * argv[]) {
         glBindVertexArray(VAO);
 
         // Draw the triangle
-        glDrawArrays(GL_TRIANGLES, 0, 3);
+        glDrawArrays(GL_TRIANGLES, 0, 9);
 
         // Unbind the VAO
         glBindVertexArray(0);
