@@ -1,7 +1,11 @@
 #version 330 core
-layout (location = 0) in vec3 position;
+in vec3 basicPosition;
+uniform mat4 basicTransform;
+in vec3 basicColor;
+out vec3 color;
 
 void main()
 {
-    gl_Position = vec4(position, 1.0);
+    gl_Position = basicTransform * vec4(basicPosition, 1.0) ;
+    color = basicColor;
 }
